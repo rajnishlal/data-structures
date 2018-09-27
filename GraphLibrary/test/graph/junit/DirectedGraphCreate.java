@@ -11,6 +11,8 @@ package graph.junit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import graph.Graph;
@@ -21,12 +23,7 @@ import graph.error.VertexAlreadyExistsException;
 import graph.error.VertexDoesNotExistException;
 
 /**
- * 
- */
-
-/**
- * 
- *
+ * Tests for a graph containing edges with direction
  */
 class DirectedGraphCreate {
 
@@ -43,7 +40,7 @@ class DirectedGraphCreate {
 			dg.addVertex(v3);
 			dg.addVertex(v4);
 		} catch (VertexAlreadyExistsException ex) {
-			fail("Error occured - " + ex.getMessage());
+			fail(ex.getMessage());
 		}
 
 		Edge e1 = new Edge(v1, v2);
@@ -55,7 +52,7 @@ class DirectedGraphCreate {
 			dg.addEdge(e2);
 			dg.addEdge(e3);
 		} catch (Exception ex) {
-			fail("Error occured - " + ex.getMessage());
+			fail(ex.getMessage());
 		}
 
 		System.out.println("Ran directed graph create test successfully.");
@@ -126,6 +123,51 @@ class DirectedGraphCreate {
 			fail(ex.getMessage());
 		}
 		System.out.println("Ran directed graph remove vertex/edge test successfully.");
+	}
+
+	@Test
+	void testFindEdgesForVertexCase() {
+		Graph dg = new Graph();
+		Vertex v1 = new Vertex(1);
+		Vertex v2 = new Vertex(2);
+		Vertex v3 = new Vertex(3);
+		Vertex v4 = new Vertex(4);
+		try {
+			dg.addVertex(v1);
+			dg.addVertex(v2);
+			dg.addVertex(v3);
+			dg.addVertex(v4);
+		} catch (VertexAlreadyExistsException ex) {
+			fail(ex.getMessage());
+		}
+
+		Edge e1 = new Edge(v1, v2);
+		Edge e2 = new Edge(v2, v3);
+		Edge e3 = new Edge(v2, v4);
+
+		try {
+			dg.addEdge(e1);
+			dg.addEdge(e2);
+			dg.addEdge(e3);
+		} catch (Exception ex) {
+			fail(ex.getMessage());
+		}
+
+		try {
+			List<Edge> efv1 = dg.findEdgesForVertex(v1);
+			assertTrue(efv1.contains(e1), "Edge e1 for vertex v1");
+			List<Edge> efv2 = dg.findEdgesForVertex(v2);
+			assertTrue(efv2.contains(e2), "Edge e2 for vertex v2");
+			assertTrue(efv2.contains(e3), "Edge e3 for vertex v2");
+			List<Edge> efv3 = dg.findEdgesForVertex(v3);
+			assertTrue(efv3.isEmpty(), "No edge for vertex v3");
+			List<Edge> efv4 = dg.findEdgesForVertex(v4);
+			assertTrue(efv4.isEmpty(), "No edge for vertex v4");
+		} catch (VertexDoesNotExistException ex) {
+			fail(ex.getMessage());
+		}
+
+		System.out.println("Ran directed graph find edges for vertex test successfully.");
 	}
 
 }

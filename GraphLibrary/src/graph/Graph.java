@@ -19,14 +19,8 @@ import graph.error.VertexDoesNotExistException;
 
 /**
  * 
- */
-
-/**
- * 
- * Graph library class to represent a graph. Making this abstract as it could be
- * directed or undirected.
- * 
- * 
+ * Graph library class to represent a graph. This is a directed graph, edge
+ * direction is from vertex v1 to vertex v2.
  *
  */
 public class Graph {
@@ -41,7 +35,7 @@ public class Graph {
 		}
 	}
 
-	Graph(List<Vertex> vList, List<Edge> eList) {
+	public Graph(List<Vertex> vList, List<Edge> eList) {
 		synchronized (this) {
 			vertices = vList;
 			edges = eList;
@@ -49,7 +43,9 @@ public class Graph {
 	}
 
 	/**
-	 * @param v
+	 * Validate if vertex is present in graph
+	 * 
+	 * @param v vertex
 	 * @throws VertexDoesNotExistException
 	 */
 	protected synchronized void validateVertexInGraph(Vertex v) throws VertexDoesNotExistException {
@@ -59,7 +55,9 @@ public class Graph {
 	}
 
 	/**
-	 * @param v
+	 * Validate if edge is present in graph
+	 * 
+	 * @param v edge
 	 * @throws EdgeDoesNotExistException
 	 */
 	protected synchronized void validateEdgeInGraph(Edge e) throws EdgeDoesNotExistException {
@@ -91,7 +89,7 @@ public class Graph {
 	 * @param v vertex to be removed
 	 */
 	public synchronized void removeVertex(Vertex v) throws VertexDoesNotExistException {
-		ArrayList<Edge> rem = findEdgesContainingVertex(v);
+		List<Edge> rem = findEdgesContainingVertex(v);
 		for (Edge re : rem) {
 			try {
 				removeEdge(re);
@@ -103,20 +101,41 @@ public class Graph {
 	}
 
 	/**
-	 * @param v
-	 * @return
+	 * Find a list of edges that have vertex v as edge vertex v1
+	 * 
+	 * @param v vertex
+	 * @return list of edges with v1 equal to v
 	 * @throws VertexDoesNotExistException
 	 */
-	public synchronized ArrayList<Edge> findEdgesContainingVertex(Vertex v) throws VertexDoesNotExistException {
+	public List<Edge> findEdgesForVertex(Vertex v) throws VertexDoesNotExistException {
 		validateVertexInGraph(v);
-		// Find all edges that contain this vertex
-		ArrayList<Edge> rem = new ArrayList<Edge>();
+		// Find all edges for vertex
+		ArrayList<Edge> ret = new ArrayList<Edge>();
 		for (Edge ee : edges) {
-			if (ee.getV1().equals(v) || ee.getV2().equals(v)) {
-				rem.add(ee);
+			if (ee.getV1().equals(v)) {
+				ret.add(ee);
 			}
 		}
-		return rem;
+		return ret;
+	}
+
+	/**
+	 * Find a list of edges that have vertex v as edge vertex v1 or v2
+	 * 
+	 * @param v vertex
+	 * @return list of edges with v1 or v2 equal to v
+	 * @throws VertexDoesNotExistException
+	 */
+	protected synchronized List<Edge> findEdgesContainingVertex(Vertex v) throws VertexDoesNotExistException {
+		validateVertexInGraph(v);
+		// Find all edges that contain this vertex
+		ArrayList<Edge> ret = new ArrayList<Edge>();
+		for (Edge ee : edges) {
+			if (ee.getV1().equals(v) || ee.getV2().equals(v)) {
+				ret.add(ee);
+			}
+		}
+		return ret;
 	}
 
 	/**
@@ -157,7 +176,7 @@ public class Graph {
 		for (Vertex ev : vertices) {
 			br.append("\t" + ev + "\n");
 		}
-		br.append("Edges:\n");
+		br.append("\tEdges:\n");
 		for (Edge ee : edges) {
 			br.append("\t" + ee + "\n");
 		}

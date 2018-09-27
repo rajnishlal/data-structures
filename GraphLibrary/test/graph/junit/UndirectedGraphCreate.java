@@ -22,8 +22,7 @@ import graph.Vertex;
 import graph.error.VertexAlreadyExistsException;
 
 /**
- * 
- *
+ * Tests for a graph containing edges with no direction
  */
 class UndirectedGraphCreate {
 
@@ -40,7 +39,7 @@ class UndirectedGraphCreate {
 			dg.addVertex(v3);
 			dg.addVertex(v4);
 		} catch (VertexAlreadyExistsException ex) {
-			fail("Error occured - " + ex.getMessage());
+			fail(ex.getMessage());
 		}
 
 		Edge e1 = new Edge(v1, v2);
@@ -52,7 +51,7 @@ class UndirectedGraphCreate {
 			dg.addEdge(e2);
 			dg.addEdge(e3);
 		} catch (Exception ex) {
-			fail("Error occured - " + ex.getMessage());
+			fail(ex.getMessage());
 		}
 
 		System.out.println("Ran undirected graph create test successfully.");
