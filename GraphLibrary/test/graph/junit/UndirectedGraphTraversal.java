@@ -30,16 +30,16 @@ import graph.error.VertexDoesNotExistException;
 class UndirectedGraphTraversal {
 
 	Graph createGraph1() {
-		UndirectedGraph dg = new UndirectedGraph();
+		UndirectedGraph ug = new UndirectedGraph();
 		Vertex v1 = new Vertex(1);
 		Vertex v2 = new Vertex(2);
 		Vertex v3 = new Vertex(3);
 		Vertex v4 = new Vertex(4);
 		try {
-			dg.addVertex(v1);
-			dg.addVertex(v2);
-			dg.addVertex(v3);
-			dg.addVertex(v4);
+			ug.addVertex(v1);
+			ug.addVertex(v2);
+			ug.addVertex(v3);
+			ug.addVertex(v4);
 		} catch (VertexAlreadyExistsException ex) {
 			fail(ex.getMessage());
 		}
@@ -49,36 +49,36 @@ class UndirectedGraphTraversal {
 		Edge e3 = new Edge(v3, v4);
 
 		try {
-			dg.addEdge(e1);
-			dg.addEdge(e2);
-			dg.addEdge(e3);
+			ug.addEdge(e1);
+			ug.addEdge(e2);
+			ug.addEdge(e3);
 		} catch (Exception ex) {
 			fail(ex.getMessage());
 		}
-		return dg;
+		return ug;
 	}
 
 	@Test
 	void testConnectivity() {
-		Graph dg = createGraph1();
-		List<Path> gp = dg.getPaths();
+		Graph ug = createGraph1();
+		List<Path> gp = ug.getPaths();
 		assertTrue(gp.size() == 12, "Got " + gp.size() + " instead of 12 paths");
-		final int con = dg.calculateConnectivity();
+		final int con = ug.calculateConnectivity();
 		assertTrue(con == 100, "Got " + con + " instead of 100");
 	}
 
 	@Test
 	void testShortestPath() {
-		UndirectedGraph dg = new UndirectedGraph();
+		UndirectedGraph ug = new UndirectedGraph();
 		Vertex v1 = new Vertex(1);
 		Vertex v2 = new Vertex(2);
 		Vertex v3 = new Vertex(3);
 		Vertex v4 = new Vertex(4);
 		try {
-			dg.addVertex(v1);
-			dg.addVertex(v2);
-			dg.addVertex(v3);
-			dg.addVertex(v4);
+			ug.addVertex(v1);
+			ug.addVertex(v2);
+			ug.addVertex(v3);
+			ug.addVertex(v4);
 		} catch (VertexAlreadyExistsException ex) {
 			fail(ex.getMessage());
 		}
@@ -89,16 +89,16 @@ class UndirectedGraphTraversal {
 		Edge e4 = new Edge(v2, v4);
 
 		try {
-			dg.addEdge(e1);
-			dg.addEdge(e2);
-			dg.addEdge(e3);
-			dg.addEdge(e4);
+			ug.addEdge(e1);
+			ug.addEdge(e2);
+			ug.addEdge(e3);
+			ug.addEdge(e4);
 		} catch (Exception ex) {
 			fail(ex.getMessage());
 		}
 		Path sp;
 		try {
-			sp = dg.findShortestPath(v1, v4);
+			sp = ug.findShortestPath(v1, v4);
 			assertTrue(sp.getLength() == 2, "Got " + sp.getLength() + " instead of 2");
 		} catch (VertexDoesNotExistException e) {
 			fail(e.getMessage());
@@ -108,16 +108,16 @@ class UndirectedGraphTraversal {
 
 	@Test
 	void testWeightedShortestPath() {
-		UndirectedGraph dg = new UndirectedGraph();
+		UndirectedGraph ug = new UndirectedGraph();
 		Vertex v1 = new Vertex(1);
 		Vertex v2 = new Vertex(2);
 		Vertex v3 = new Vertex(3);
 		Vertex v4 = new Vertex(4);
 		try {
-			dg.addVertex(v1);
-			dg.addVertex(v2);
-			dg.addVertex(v3);
-			dg.addVertex(v4);
+			ug.addVertex(v1);
+			ug.addVertex(v2);
+			ug.addVertex(v3);
+			ug.addVertex(v4);
 		} catch (VertexAlreadyExistsException ex) {
 			fail(ex.getMessage());
 		}
@@ -128,16 +128,16 @@ class UndirectedGraphTraversal {
 		Edge e4 = new Edge(v2, v4, 50, "2->4");
 
 		try {
-			dg.addEdge(e1);
-			dg.addEdge(e2);
-			dg.addEdge(e3);
-			dg.addEdge(e4);
+			ug.addEdge(e1);
+			ug.addEdge(e2);
+			ug.addEdge(e3);
+			ug.addEdge(e4);
 		} catch (Exception ex) {
 			fail(ex.getMessage());
 		}
 		Path sp;
 		try {
-			sp = dg.findShortestPath(v1, v4);
+			sp = ug.findShortestPath(v1, v4);
 			assertTrue(sp.getLength() == 50, "Got " + sp.getLength() + " instead of 50");
 		} catch (VertexDoesNotExistException e) {
 			fail(e.getMessage());

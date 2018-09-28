@@ -20,7 +20,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Graph library class to represent a vertex.
- * 
  */
 public class Vertex {
 

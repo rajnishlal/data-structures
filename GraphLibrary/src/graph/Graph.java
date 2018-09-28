@@ -36,10 +36,8 @@ import graph.error.VertexDoesNotExistException;
 @XmlAccessorType(XmlAccessType.FIELD)
 
 /**
- * 
  * Graph library class to represent a graph. This is a directed graph, edge
  * direction is from vertex v1 to vertex v2.
- *
  */
 public class Graph {
 	@XmlElement(name = "vertex")
@@ -402,6 +400,12 @@ public class Graph {
 		return br.toString();
 	}
 
+	/**
+	 * Create XML for this graph
+	 * 
+	 * @return string XML for graph
+	 * @throws JAXBException error during XML conversion
+	 */
 	public String convertToXML() throws JAXBException {
 		JAXBContext jaxbContext = JAXBContext.newInstance(Graph.class);
 		Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
@@ -413,11 +417,19 @@ public class Graph {
 		return sw.toString();
 	}
 
+	/**
+	 * Create instance of this graph from XML
+	 * 
+	 * @param xml string XML for this graph
+	 * @return instance of graph
+	 * @throws JAXBException error during XML coversion
+	 */
 	public static Graph createFromXML(String xml) throws JAXBException {
 		JAXBContext jaxbContext = JAXBContext.newInstance(Graph.class);
 		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 		InputStream targetStream = new ByteArrayInputStream(xml.getBytes());
 		Graph dg = (Graph) jaxbUnmarshaller.unmarshal(targetStream);
+		dg.resetPaths();
 		return dg;
 	}
 
