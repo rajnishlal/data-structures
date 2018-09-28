@@ -13,6 +13,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
+import javax.xml.bind.JAXBException;
+
 import org.junit.jupiter.api.Test;
 
 import graph.Graph;
@@ -27,8 +29,7 @@ import graph.error.VertexDoesNotExistException;
  */
 class DirectedGraphCreate {
 
-	@Test
-	void testNormalCase() {
+	Graph createGraph1() {
 		Graph dg = new Graph();
 		Vertex v1 = new Vertex(1);
 		Vertex v2 = new Vertex(2);
@@ -54,12 +55,16 @@ class DirectedGraphCreate {
 		} catch (Exception ex) {
 			fail(ex.getMessage());
 		}
-
-		System.out.println("Ran directed graph create test successfully.");
+		return dg;
 	}
 
 	@Test
-	void testDuplicate() {
+	void testNormalCase() {
+		createGraph1();
+	}
+
+	@Test
+	void testXML() {
 		Graph dg = new Graph();
 		Vertex v1 = new Vertex(1);
 		Vertex v2 = new Vertex(2);
@@ -87,7 +92,21 @@ class DirectedGraphCreate {
 		} catch (VertexDoesNotExistException ex1) {
 			fail(ex1.getMessage());
 		}
-		System.out.println("Ran directed graph duplicate vertex/edge test successfully.");
+
+		String dgxml = "";
+		try {
+			dgxml = dg.convertToXML();
+		} catch (JAXBException e) {
+			fail(e.getMessage());
+		}
+
+		Graph dg1 = null;
+		try {
+			dg1 = Graph.createFromXML(dgxml);
+		} catch (JAXBException e) {
+			fail(e.getMessage());
+		}
+		assertTrue(dg.equals(dg1), "XML conversion did not create graph");
 	}
 
 	@Test
@@ -122,7 +141,6 @@ class DirectedGraphCreate {
 			ex.printStackTrace();
 			fail(ex.getMessage());
 		}
-		System.out.println("Ran directed graph remove vertex/edge test successfully.");
 	}
 
 	@Test
@@ -166,8 +184,6 @@ class DirectedGraphCreate {
 		} catch (VertexDoesNotExistException ex) {
 			fail(ex.getMessage());
 		}
-
-		System.out.println("Ran directed graph find edges for vertex test successfully.");
 	}
 
 }

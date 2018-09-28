@@ -16,33 +16,33 @@ import graph.error.EdgeDoesNotExistException;
 import graph.error.VertexDoesNotExistException;
 
 /**
- * 
- */
-
-/**
- * 
- *
+ * Undirected graph represents graphs with edges that do not have a direction,
+ * example if a graph has two vertices (A, B) then an edge traversal for "A - B"
+ * would be bi-directional i.e. "A to B" and "B to A" are both allowed.
  */
 public class UndirectedGraph extends Graph {
 
 	/**
-	 * Undirected graph represents graphs with edges that do not have a direction,
-	 * example if a graph has two vertices (A, B) then an edge traversal for A - B
-	 * would be bi-directional i.e. A -> B and B -> A are both allowed.
+	 * Default constructor
 	 */
 	public UndirectedGraph() {
 		super();
 	}
 
 	/**
-	 * @param vList
-	 * @param eList
+	 * Custom constructor that takes list of vertices and edges
+	 * 
+	 * @param vList list of vertices
+	 * @param eList list of edges
 	 */
 	public UndirectedGraph(List<Vertex> vList, List<Edge> eList) {
 		super(vList, eList);
 	}
 
 	/**
+	 * Due to bi-directional nature of edge in undirected graph, two directed edges
+	 * are added for each edge.
+	 * 
 	 * @see graph.Graph#addEdge(graph.Edge)
 	 */
 	@Override
@@ -57,6 +57,9 @@ public class UndirectedGraph extends Graph {
 	}
 
 	/**
+	 * Due to bi-directional nature of edge in undirected graph, two directed edges
+	 * are removed for each edge.
+	 * 
 	 * @see graph.Graph#removeEdge(graph.Edge)
 	 */
 	@Override

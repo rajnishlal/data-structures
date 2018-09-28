@@ -11,17 +11,18 @@ package graph;
 
 import java.util.Objects;
 
-/**
- * 
- */
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "edge")
+@XmlAccessorType(XmlAccessType.FIELD)
 
 /**
  * 
  * Graph library class to represent an edge, all edges need two vertices. Edges
  * could have weights and/or labels, both of these are optional.
  * 
- * 
- *
  */
 public class Edge {
 
