@@ -35,11 +35,27 @@ public class Edge {
 		v2 = null;
 	}
 
+	/**
+	 * Custom constructor that takes two vertices. Default weight will be 1 and
+	 * label vertex1 to vertex2.
+	 * 
+	 * @param vertex1 vertex1
+	 * @param vertex2 vertex2
+	 */
 	public Edge(Vertex vertex1, Vertex vertex2) {
 		v1 = vertex1;
 		v2 = vertex2;
+		label = v1.getVname() + "->" + v2.getVname();
 	}
 
+	/**
+	 * Custom constructor that takes two vertices, weight and label
+	 * 
+	 * @param vertex1 vertex1
+	 * @param vertex2 vertex2
+	 * @param weight  weight assigned to this edge (default 1)
+	 * @param label   label string for this edge
+	 */
 	public Edge(Vertex vertex1, Vertex vertex2, int weight, String label) {
 		v1 = vertex1;
 		v2 = vertex2;

@@ -46,6 +46,9 @@ public class Graph {
 	private final List<Edge> edges;
 	private List<Path> paths = null;
 
+	/**
+	 * Default constructor
+	 */
 	public Graph() {
 		synchronized (this) {
 			vertices = new ArrayList<Vertex>();
@@ -53,6 +56,12 @@ public class Graph {
 		}
 	}
 
+	/**
+	 * Custom constructor that takes list of vertices and edges
+	 * 
+	 * @param vList list of vertices
+	 * @param eList list of edges
+	 */
 	public Graph(List<Vertex> vList, List<Edge> eList) {
 		synchronized (this) {
 			vertices = vList;
@@ -422,7 +431,7 @@ public class Graph {
 	 * 
 	 * @param xml string XML for this graph
 	 * @return instance of graph
-	 * @throws JAXBException error during XML coversion
+	 * @throws JAXBException error during XML conversion
 	 */
 	public static Graph createFromXML(String xml) throws JAXBException {
 		JAXBContext jaxbContext = JAXBContext.newInstance(Graph.class);

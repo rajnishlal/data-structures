@@ -32,11 +32,22 @@ public class Vertex {
 		vname = "";
 	}
 
+	/**
+	 * Custom constructor that takes vertex ID
+	 * 
+	 * @param vertexID vertex ID
+	 */
 	public Vertex(int vertexID) {
 		vid = vertexID;
 		vname = "" + vid;
 	}
 
+	/**
+	 * Custom constructor that takes vertex ID and vertex Name
+	 * 
+	 * @param vertexID   vertex ID
+	 * @param vertexName vertex Name
+	 */
 	public Vertex(int vertexID, String vertexName) {
 		vid = vertexID;
 		vname = vertexName;

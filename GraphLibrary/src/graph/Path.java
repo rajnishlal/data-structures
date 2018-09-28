@@ -30,6 +30,11 @@ public class Path {
 		length = 0;
 	}
 
+	/**
+	 * Custom constructor that takes an edge
+	 * 
+	 * @param e edge
+	 */
 	public Path(Edge e) {
 		if (e != null && !e.getV1().equals(e.getV2())) {
 			start = e.getV1();
@@ -45,6 +50,12 @@ public class Path {
 		}
 	}
 
+	/**
+	 * Custom constructor that takes a path and edge
+	 * 
+	 * @param p path
+	 * @param e edge
+	 */
 	public Path(Path p, Edge e) {
 		if (p != null && e != null && p.getEnd().equals(e.getV1()) && !p.getVertices().contains(e.getV2())) {
 			start = p.getStart();
