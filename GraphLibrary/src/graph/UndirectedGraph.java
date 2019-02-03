@@ -51,7 +51,7 @@ public class UndirectedGraph extends Graph {
 			super.addEdge(e);
 			Vertex ev1 = e.getV1();
 			Vertex ev2 = e.getV2();
-			Edge rev = new Edge(ev2, ev1, 1, ev2.getVname() + "->" + ev1.getVname());
+			Edge rev = new Edge(ev2, ev1, e.getWeight(), ev2.getVname() + "->" + ev1.getVname());
 			super.addEdge(rev);
 		}
 	}

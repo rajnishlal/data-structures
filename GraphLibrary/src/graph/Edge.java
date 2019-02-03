@@ -123,7 +123,7 @@ public class Edge {
 	 */
 	@Override
 	public int hashCode() {
-		return Objects.hash(v1, v2, weight, label);
+		return Objects.hash(v1, v2);
 	}
 
 	/**

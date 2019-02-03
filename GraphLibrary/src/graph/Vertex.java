@@ -97,7 +97,7 @@ public class Vertex {
 	 */
 	@Override
 	public int hashCode() {
-		return Objects.hash(vid, vname);
+		return Objects.hash(vid);
 	}
 
 }

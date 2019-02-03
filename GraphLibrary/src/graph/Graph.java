@@ -50,10 +50,8 @@ public class Graph {
 	 * Default constructor
 	 */
 	public Graph() {
-		synchronized (this) {
-			vertices = new ArrayList<Vertex>();
-			edges = new ArrayList<Edge>();
-		}
+		vertices = new ArrayList<Vertex>();
+		edges = new ArrayList<Edge>();
 	}
 
 	/**
@@ -63,10 +61,8 @@ public class Graph {
 	 * @param eList list of edges
 	 */
 	public Graph(List<Vertex> vList, List<Edge> eList) {
-		synchronized (this) {
-			vertices = vList;
-			edges = eList;
-		}
+		vertices = vList;
+		edges = eList;
 	}
 
 	/**
