@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="data-structures">
+    <property environment="env"/>
+    <property name="src.link" value="GraphLibrary/src"/>
+    <property name="lib.link" value="GraphLibrary/lib"/>
+    <property name="doc.link" value="GraphLibrary/doc"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="21"/>
+    <property name="source" value="21"/>
+    <path id="glassfish-jaxb-3.0.userclasspath">
+        <pathelement location="GraphLibrary/lib/glassfish-jaxb-3.0/istack-commons-runtime-4.0.0-M3.jar"/>
+        <pathelement location="GraphLibrary/lib/glassfish-jaxb-3.0/jakarta.activation-2.0.0-RC3.jar"/>
+        <pathelement location="GraphLibrary/lib/glassfish-jaxb-3.0/jakarta.xml.bind-api-3.0.0-RC3.jar"/>
+        <pathelement location="GraphLibrary/lib/glassfish-jaxb-3.0/jaxb-core-3.0.0-M4.jar"/>
+        <pathelement location="GraphLibrary/lib/glassfish-jaxb-3.0/jaxb-runtime-3.0.0-M4.jar"/>
+        <pathelement location="GraphLibrary/lib/glassfish-jaxb-3.0/txw2-3.0.0-M4.jar"/>
+    </path>
+    <path id="data-structures.classpath">
+        <pathelement location="deploy"/>
+        <path refid="glassfish-jaxb-3.0.userclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="deploy"/>
+        <copy includeemptydirs="false" todir="deploy">
+            <fileset dir="${src.link}">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="deploy">
+            <fileset dir="${lib.link}">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="deploy">
+            <fileset dir="${doc.link}">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="deploy"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="deploy" includeantruntime="false" source="${source}" target="${target}">
+            <src path="${src.link}"/>
+            <src path="${lib.link}"/>
+            <src path="${doc.link}"/>
+            <classpath refid="data-structures.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+</project>
