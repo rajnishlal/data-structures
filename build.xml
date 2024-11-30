@@ -58,6 +58,7 @@
             <src path="${doc.link}"/>
             <classpath refid="data-structures.classpath"/>
         </javac>
+        <jar destfile="deploy/graph.jar" basedir="deploy" includes="**"/>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
 </project>
