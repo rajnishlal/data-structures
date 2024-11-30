@@ -26,5 +26,5 @@ jobs:
     - name: Upload jar
       uses: actions/upload-artifact@v4
       with:
-        name: Package
+        name: graph.jar
         path: deploy/graph.jar
