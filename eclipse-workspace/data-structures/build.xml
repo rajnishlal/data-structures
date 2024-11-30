@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="data-structures">
+    <property environment="env"/>
+    <property name="src.link" value="../../GraphLibrary/src"/>
+    <property name="test.link" value="../../GraphLibrary/test"/>
+    <property name="lib.link" value="../../GraphLibrary/lib"/>
+    <property name="doc.link" value="../../GraphLibrary/doc"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="21"/>
+    <property name="source" value="21"/>
+    <path id="glassfish-jaxb-3.0.userclasspath">
+        <pathelement location="../../../../../../../../../../data-structures/lib/glassfish-jaxb-3.0/istack-commons-runtime-4.0.0-M3.jar"/>
+        <pathelement location="../../../../../../../../../../data-structures/lib/glassfish-jaxb-3.0/jakarta.activation-2.0.0-RC3.jar"/>
+        <pathelement location="../../../../../../../../../../data-structures/lib/glassfish-jaxb-3.0/jakarta.xml.bind-api-3.0.0-RC3.jar"/>
+        <pathelement location="../../../../../../../../../../data-structures/lib/glassfish-jaxb-3.0/jaxb-core-3.0.0-M4.jar"/>
+        <pathelement location="../../../../../../../../../../data-structures/lib/glassfish-jaxb-3.0/jaxb-runtime-3.0.0-M4.jar"/>
+        <pathelement location="../../../../../../../../../../data-structures/lib/glassfish-jaxb-3.0/txw2-3.0.0-M4.jar"/>
+    </path>
+    <path id="JUnit 5.libraryclasspath">
+        <pathelement location="../../../../../../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/junit-jupiter-api_5.11.0.jar"/>
+        <pathelement location="../../../../../../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/junit-jupiter-engine_5.11.0.jar"/>
+        <pathelement location="../../../../../../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/junit-jupiter-migrationsupport_5.11.0.jar"/>
+        <pathelement location="../../../../../../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/junit-jupiter-params_5.11.0.jar"/>
+        <pathelement location="../../../../../../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/junit-platform-commons_1.11.0.jar"/>
+        <pathelement location="../../../../../../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/junit-platform-engine_1.11.0.jar"/>
+        <pathelement location="../../../../../../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/junit-platform-launcher_1.11.0.jar"/>
+        <pathelement location="../../../../../../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/junit-platform-runner_1.11.0.jar"/>
+        <pathelement location="../../../../../../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/junit-platform-suite-api_1.11.0.jar"/>
+        <pathelement location="../../../../../../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/junit-platform-suite-engine_1.11.0.jar"/>
+        <pathelement location="../../../../../../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/junit-platform-suite-commons_1.11.0.jar"/>
+        <pathelement location="../../../../../../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/junit-vintage-engine_5.11.0.jar"/>
+        <pathelement location="../../../../../../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/org.opentest4j_1.3.0.jar"/>
+        <pathelement location="../../../../../../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/org.apiguardian.api_1.1.2.jar"/>
+        <pathelement location="../../../../../../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/org.junit_4.13.2.v20230809-1000.jar"/>
+        <pathelement location="../../../../../../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/org.hamcrest_3.0.0.jar"/>
+        <pathelement location="../../../../../../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/org.hamcrest.core_2.2.0.v20230809-1000.jar"/>
+    </path>
+    <path id="data-structures.classpath">
+        <pathelement location="deploy"/>
+        <path refid="glassfish-jaxb-3.0.userclasspath"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+    </path>
+    <path id="run.graph.junit.classpath">
+        <path refid="data-structures.classpath"/>
+        <path refid="glassfish-jaxb-3.0.userclasspath"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="deploy"/>
+        <copy includeemptydirs="false" todir="deploy">
+            <fileset dir="${src.link}">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="deploy">
+            <fileset dir="${test.link}">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="deploy">
+            <fileset dir="${lib.link}">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="deploy">
+            <fileset dir="${doc.link}">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="deploy"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="deploy" includeantruntime="false" source="${source}" target="${target}">
+            <src path="${src.link}"/>
+            <src path="${test.link}"/>
+            <src path="${lib.link}"/>
+            <src path="${doc.link}"/>
+            <classpath refid="data-structures.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="graph.junit">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="graph.junit.DirectedGraphCreate" todir="${junit.output.dir}"/>
+            <test name="graph.junit.DirectedGraphTraversal" todir="${junit.output.dir}"/>
+            <test name="graph.junit.UndirectedGraphCreate" todir="${junit.output.dir}"/>
+            <test name="graph.junit.UndirectedGraphTraversal" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.graph.junit.classpath"/>
+        </junit>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
+</project>
