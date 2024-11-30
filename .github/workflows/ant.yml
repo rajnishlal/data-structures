@@ -22,7 +22,8 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
     - name: Build with Ant
-      run: ant -noinput -buildfile eclipse-workspace/data-structures/build.xml
+      working-directory: eclipse-workspace/data-structures
+      run: ant -noinput -buildfile build.xml
     - name: Upload jar
       uses: actions/upload-artifact@v4
       with:
