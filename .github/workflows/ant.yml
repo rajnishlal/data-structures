@@ -27,4 +27,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: Package
-        path: eclipse-workspace/data-structures/deploy/graph.jar
+        path: deploy/graph.jar
